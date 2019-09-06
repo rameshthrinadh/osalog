@@ -1,32 +1,31 @@
 #include<iostream> 
 #include<typeinfo>
 using namespace std;
- 
 void swap(int *p,int *q){
 	int t=*p;
 	*p=*q;*q=t;
 }
 void cttime(int pr[],int at[],int bt[],int n,int ct[]) 
 { 														//cttime....
-	for(int i=0;i<n;i++){
-		int co=0;
+	for(int i=0;i<n;i++)   {
+		int co=i;
 		if(i==0){
-		ct[i]=bt[i]+at[i];
-		cout<<ct[i]<<"\n";
-		}
+		ct[i]=bt[i]+at[i];	}
 		else{
 			for(int j=i;j<n;j++){
-				if(at[j]<=ct[i-1]){co++;}
+				if(at[j]<=ct[i-1]){co++;				
 				}
-			for(int k=i;k<=co;k++){
-				for(int l=k+1;l<=co;l++){
+				}
+			for(int k=i;k<co;k++){
+				for(int l=k+1;l<co;l++){
 					if(bt[k]>bt[l]){
 						swap(&at[k],&at[l]);
 						swap(&bt[k],&bt[l]);
 						swap(&pr[k],&pr[l]);
 					}
 				}
-			}	
+			} 	
+	
 			if(at[i]<=ct[i-1]){
 				
 				ct[i]=bt[i]+at[i]+(ct[i-1]-at[i]);
@@ -36,7 +35,8 @@ void cttime(int pr[],int at[],int bt[],int n,int ct[])
 				ct[i]=bt[i]+at[i];
 			}
 			}
-		}											//tat and wttime.....
+		}
+											//tat and wttime.....
 	int tat[n],wt[n];
 	for(int i=0;i<n;i++){
 		tat[i]=ct[i]-at[i];
@@ -49,7 +49,7 @@ void cttime(int pr[],int at[],int bt[],int n,int ct[])
 		totalwt = totalwt + wt[i]; 
 		totaltat = totaltat + tat[i];
 		l=tat[i]+at[i]; 
-		cout << " " << i+1 << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << ct[i] << endl; 
+		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << ct[i] << endl; 
 	} 
 
 	cout << "avg waiting time = "<< (float)totalwt / (float)n; 
@@ -75,6 +75,13 @@ void sort(int pr[],int at[],int bt[],int n){
 			}
 		}
 	}
+	
+		cout << "processes " << " burst Time " << " arrival time "<< endl;
+	for (int i = 0 ; i < n ; i++) 
+	{ 
+		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< endl; 
+	} 
+	
 	int ct[n];
 	cttime(pr,at,bt,n,ct);
 }
@@ -93,4 +100,3 @@ int main()
 
 	return 0; 
 } 
-
