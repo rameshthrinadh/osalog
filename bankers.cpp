@@ -6,7 +6,7 @@ int main(){
 	cin>>pn;
 	cout<<"enter the no.of resource types : ";
 	cin>>rn;
-	int alc[pn][rn],max[pn][rn],avl[rn];
+	int alc[pn][rn],max[pn][rn],avl[rn],avld[rn],sum[rn];
 	for(int i=0;i<pn;i++){
 		cout<<"enter for process "<<i<<" allocated resources :";
 		for(int j=0;j<rn;j++){
@@ -19,7 +19,7 @@ int main(){
 	}
 	cout<<"enter available resources : ";
 	for(int i=0;i<rn;i++){
-		cin>>avl[i];
+		cin>>avl[i];avld[i]=avl[i];
 	}
 int need[pn][rn],fn[pn],sol[pn],n=0;
 for(int i=0;i<pn;i++){fn[i]=0;}
@@ -44,7 +44,7 @@ for(int i=0;i<pn;i++){fn[i]=0;}
 						fn[j]=1;
 					}
 				}
-			}
+			}if(tr==1 && j==pn-1){cout<<"\nit cant be\n";exit(0); break;}
 		}
 	}
 	cout<<"entered data is :";
@@ -66,10 +66,19 @@ for(int i=0;i<pn;i++){
 		}
 		cout<<"\n";
 }		
-cout<<"the available process after allocating is : ";
+cout<<"the total no.of resources is : ";
 for(int i=0;i<rn;i++){
 	cout<<avl[i]<<" ";
 }
+cout<<"\nthe available resources after allocating is : ";
+for(int i=0;i<rn;i++){
+	cout<<avld[i]<<" ";
+}
+cout<<"\nthe available resources after completing is : ";
+for(int i=0;i<rn;i++){
+	cout<<avl[i]<<" ";
+}
+
 cout<<"\nthe seqence of processes to be executed is : ";
 	for(int i=0;i<pn;i++){
 		cout<<"pr->"<<sol[i]<<" ";
